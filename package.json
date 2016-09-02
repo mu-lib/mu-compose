@@ -1,0 +1,22 @@
+{
+  "name": "mu-jquery-compose",
+  "version": "1.0.0",
+  "description": "A micro object composer",
+  "main": "coppose.js",
+  "scripts": {
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mu-lib/mu-compose.git"
+  },
+  "author": "Mikael Karon <mikael@karon.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mu-lib/mu-compose/issues"
+  },
+  "homepage": "https://github.com/mu-lib/mu-compose#readme",
+  "devDependencies": {
+    "standard-version": "^2.4.0"
+  }
+}
