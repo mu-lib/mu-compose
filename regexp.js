@@ -7,18 +7,12 @@
     root["mu-compose/regexp"] = factory();
   }
 }(this, function() {
-  return function(regexp, prop) {
+  return function(regexp, callback) {
     return function(result, data) {
-      var key = data.key;
-      var matches = key.match(regexp);
+      var matches = data.key.match(regexp);
 
       if (matches) {
-        (result[prop] = result[prop] || []).push({
-          "matches": matches,
-          "value": data.value
-        });
-
-        return false;
+        return callback.apply(this, [result, data].concat(matches.slice(1)));
       }
     }
   }
