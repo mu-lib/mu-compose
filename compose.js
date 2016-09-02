@@ -5,7 +5,7 @@
     } else if (typeof module === "object" && module.exports) {
       module.exports = factory();
     } else {
-      root["mu-compose/composer"] = factory();
+      root["mu-compose/compose"] = factory();
     }
   })(w, function() {
     function flip(key) {
@@ -25,15 +25,11 @@
           }
           break;
 
-        case "[object Function]":
+        default:
           data = {
-            "key": "constructor",
+            "key": type,
             "value": data
           }
-          break;
-
-        default:
-          throw new Error("Unable to transform type '" + type + "' at index " + index);
       }
 
       return data;

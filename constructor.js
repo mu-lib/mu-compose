@@ -10,7 +10,7 @@
   return function(result, data) {
     var key = data.key;
 
-    if (key === "constructor") {
+    if (key === "[object Function]") {
       (result.constructors = result.constructors || []).push(data.value);
 
       return false;
