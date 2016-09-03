@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/mu-lib/mu-compose/compare/v1.0.1...v2.0.0) (2016-09-03)
+
+
+### Bug Fixes
+
+* update package name in package.json ([ab05161](https://github.com/mu-lib/mu-compose/commit/ab05161))
+
+
+### Features
+
+* constructors can change arguments for next invocation ([ebe172e](https://github.com/mu-lib/mu-compose/commit/ebe172e))
+
+
+### BREAKING CHANGES
+
+* Previously constructors could return a new value that
+would change the return type of the object. The new usage is to return a
+value to be passed to the next constructor - if the value is an array ||
+arguments it will be spread over the next constructor, if it's a native
+type it will be wrapped in an array and spread over the next constructor,
+otherwise the previous args will be used for the next
+invocation.
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/mu-lib/mu-compose/compare/v1.0.0...v1.0.1) (2016-09-03)
 
