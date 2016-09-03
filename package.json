@@ -1,5 +1,5 @@
 {
-  "name": "mu-jquery-compose",
+  "name": "mu-compose",
   "version": "1.0.1",
   "description": "A micro object composer",
   "main": "coppose.js",
