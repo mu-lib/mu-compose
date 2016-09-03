@@ -6,8 +6,8 @@
   } else {
     root["mu-compose/prototype"] = factory();
   }
-}(this, function() {
+})(this, function() {
   return function(result, data) {
     result.prototype[data.key] = data.value;
   }
-}));
+});

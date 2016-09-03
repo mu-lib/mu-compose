@@ -6,7 +6,7 @@
   } else {
     root["mu-compose/constructor"] = factory();
   }
-}(this, function() {
+})(this, function() {
   return function(result, data) {
     var key = data.key;
 
@@ -16,4 +16,4 @@
       return false;
     }
   }
-}));
+});

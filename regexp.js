@@ -6,7 +6,7 @@
   } else {
     root["mu-compose/regexp"] = factory();
   }
-}(this, function() {
+})(this, function() {
   return function(regexp, callback) {
     return function(result, data) {
       var matches = data.key.match(regexp);
@@ -16,4 +16,4 @@
       }
     }
   }
-}));
+});
