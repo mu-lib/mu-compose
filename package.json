@@ -2,9 +2,10 @@
   "name": "mu-compose",
   "version": "2.0.0",
   "description": "A micro object composer",
-  "main": "coppose.js",
+  "main": "compose.js",
   "scripts": {
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "tap test/*.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/mu-lib/mu-compose#readme",
   "devDependencies": {
-    "standard-version": "^2.4.0"
+    "standard-version": "^2.4.0",
+    "tap": "^7.1.0"
   }
 }
