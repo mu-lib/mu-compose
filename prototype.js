@@ -1,12 +1,14 @@
-(function(root, factory) {
+(function(modules, root, factory) {
   if (typeof define === "function" && define.amd) {
-    define([], factory);
+    define(modules, factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory();
+    module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/prototype"] = factory();
+    root["mu-compose/prototype"] = factory.apply(root, modules.map(function(m) {
+      return root[m.replace(/^\./, "mu-compose")];
+    }));
   }
-})(this, function() {
+})([], this, function() {
   return function(result, data) {
     result.prototype[data.key] = data.value;
   }
