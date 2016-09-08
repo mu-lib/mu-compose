@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/mu-lib/mu-compose/compare/v2.0.0...v2.1.0) (2016-09-08)
+
+
+### Features
+
+* make it all testable with tap ([#1](https://github.com/mu-lib/mu-compose/issues/1)) ([bdc891d](https://github.com/mu-lib/mu-compose/commit/bdc891d))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/mu-lib/mu-compose/compare/v1.0.1...v2.0.0) (2016-09-03)
 
