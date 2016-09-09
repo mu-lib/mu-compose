@@ -4,8 +4,7 @@
   "description": "A micro object composer",
   "main": "compose.js",
   "scripts": {
-    "release": "standard-version",
-    "test": "tap test/*.js"
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,6 @@
   },
   "homepage": "https://github.com/mu-lib/mu-compose#readme",
   "devDependencies": {
-    "standard-version": "^2.4.0",
-    "tap": "^7.1.0"
+    "standard-version": "^2.4.0"
   }
 }
