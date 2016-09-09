@@ -18,7 +18,7 @@
     "../regexp"
 ], this, function(QUnit, compose, construct, proto, regexp) {
 
-    QUnit.module("mu-compose/compose");
+    QUnit.module("mu-compose/compose#property");
 
     QUnit.test("prototype", function (assert) {
         assert.expect(1);
@@ -49,7 +49,7 @@
         var c = new C();
     });
 
-    QUnit.module("mu-compose/compose.constructors");
+    QUnit.module("mu-compose/compose#constructors");
 
     QUnit.test("executed in order", function (assert) {
         var count = 0;

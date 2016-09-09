@@ -15,7 +15,7 @@
     "../process"
 ], this, function(QUnit, process) {
 
-    QUnit.module("mu-compose/process.rules");
+    QUnit.module("mu-compose/process#rules");
 
     QUnit.test("executed in context", function (assert) {
         var o = {};
@@ -98,7 +98,7 @@
         )();
     });
 
-    QUnit.module("mu-compose/process.return");
+    QUnit.module("mu-compose/process#return");
 
     QUnit.test("original for noop", function (assert) {
         var o = {};

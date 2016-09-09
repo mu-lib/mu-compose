@@ -15,7 +15,7 @@
     "../transform"
 ], this, function(QUnit, transform) {
 
-    QUnit.module("mu-compose/transform.basic");
+    QUnit.module("mu-compose/transform#basic");
 
     QUnit.test("noop", function (assert) {
         var o = {
@@ -66,7 +66,7 @@
     });
 
 
-    QUnit.module("mu-compose/transform.complex");
+    QUnit.module("mu-compose/transform#complex");
 
     QUnit.test("transposed", function (assert) {
         assert.expect(1);
