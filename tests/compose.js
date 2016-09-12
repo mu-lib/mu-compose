@@ -17,6 +17,56 @@
     "../prototype",
     "../regexp"
 ], this, function(QUnit, compose, construct, proto, regexp) {
+    var toString = Object.prototype.toString;
+
+    function transform() {
+        return {
+            "key": toString.call(this),
+            "value": this
+        };
+    }
+
+    QUnit.module("mu-compose/compose#extend.rules");
+
+    QUnit.test("noop", function (assert) {
+        assert.expect(1);
+
+        var F = function () {};
+        var C = compose(F, F);
+
+        assert.deepEqual(C.concat(), [F, F]);
+    });
+
+    QUnit.test("arguments concat'ed", function (assert) {
+        assert.expect(1);
+
+        var F = function () {};
+        var C = compose(F,F);
+
+        assert.deepEqual(C.concat([F,F],F), [F,F,F,F,F]);
+    });
+
+    QUnit.module("mu-compose/compose#extend.blueprints");
+
+    QUnit.test("noop", function (assert) {
+        assert.expect(1);
+
+        var F = function () {};
+        var C = compose()(F, F);
+        var t = transform.call(F);
+
+        assert.deepEqual(C.concat(), [t, t]);
+    });
+
+    QUnit.test("arguments concat'ed", function (assert) {
+        assert.expect(1);
+
+        var F = function () {};
+        var C = compose()(F,F);
+        var t = transform.call(F);
+
+        assert.deepEqual(C.concat([t,t],t), [t,t,t,t,t]);
+    });
 
     QUnit.module("mu-compose/compose#property");
 
@@ -49,7 +99,7 @@
         var c = new C();
     });
 
-    QUnit.module("mu-compose/compose#constructors");
+    QUnit.module("mu-compose/compose#constructor");
 
     QUnit.test("executed in order", function (assert) {
         var count = 0;
