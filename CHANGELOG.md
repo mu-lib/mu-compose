@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/mu-lib/mu-compose/compare/v2.2.0...v3.0.0) (2016-09-12)
+
+
+### Features
+
+* allow safe extension of rules and blueprints ([800cf39](https://github.com/mu-lib/mu-compose/commit/800cf39))
+
+
+### BREAKING CHANGES
+
+* this commit allows for a safer extension point and thus
+the old .rules and .blueprints properties are now removed.
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/mu-lib/mu-compose/compare/v2.1.1...v2.2.0) (2016-09-12)
 
