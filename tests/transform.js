@@ -15,7 +15,7 @@
     "../transform"
 ], this, function(QUnit, transform) {
 
-    QUnit.module("mu-compose/transform#basic");
+    QUnit.module("mu-compose/transform");
 
     QUnit.test("noop", function (assert) {
         var o = {
@@ -28,6 +28,8 @@
         
         assert.deepEqual(transform(o), o);
     });
+
+    QUnit.module("mu-compose/transform#basic");
 
     QUnit.test("string|number|boolean|object|array|arguments", function (assert) {
         assert.expect(6);

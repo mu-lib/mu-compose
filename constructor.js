@@ -14,7 +14,6 @@
 
     if (key === "[object Function]") {
       (result.constructors = result.constructors || []).push(data.value);
-
       return false;
     }
   }
