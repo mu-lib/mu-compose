@@ -21,16 +21,17 @@
   return function() {
     var rules = slice.call(arguments);
 
-    return function() {
+    function compose() {
       var config = this === root ? {} : this;
       var result = slice.call(arguments);
+      var blueprints;
 
       // Flatten & Clean
       result = concat.apply(array, result).filter(clean, config);
       // Transform
       result = result.map(config.transform || transform, config);
       // Flatten & Clean
-      result = concat.apply(array, result).filter(clean, config);
+      result = blueprints = concat.apply(array, result).filter(clean, config);
       // Process
       result = result.reduce(process.apply(config, rules), function Composition() {
         var self = this;
@@ -53,8 +54,15 @@
           return r;
         }, arguments);
       });
+      // Store blueprints
+      result.blueprints = blueprints;
 
       return result;
     }
+
+    // Store rules
+    compose.rules = rules;
+
+    return compose;
   }
 });
