@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/mu-lib/mu-create/compare/v3.1.0...v4.0.0) (2016-09-13)
+
+
+### Features
+
+* package rename ([baba360](https://github.com/mu-lib/mu-create/commit/baba360))
+
+
+### BREAKING CHANGES
+
+* The package name was changed from mu-compose to mu-create
+to not clash with existing npm package.
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/mu-lib/mu-compose/compare/v3.0.0...v3.1.0) (2016-09-13)
 
