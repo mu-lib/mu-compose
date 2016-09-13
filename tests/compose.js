@@ -26,9 +26,17 @@
         };
     }
 
-    QUnit.module("mu-compose/compose#extend.rules");
+    QUnit.module("mu-compose/compose#rules");
 
     QUnit.test("noop", function (assert) {
+        assert.expect(1);
+
+        var C = compose();
+
+        assert.deepEqual(C.concat(), []);
+    });
+
+    QUnit.test("defaults", function (assert) {
         assert.expect(1);
 
         var F = function () {};
@@ -37,35 +45,90 @@
         assert.deepEqual(C.concat(), [F, F]);
     });
 
-    QUnit.test("arguments concat'ed", function (assert) {
+    QUnit.test("flat", function (assert) {
         assert.expect(1);
 
-        var F = function () {};
-        var C = compose(F,F);
+        var A = function () {};
+        var B = function () {};
+        var C = compose(A,B);
 
-        assert.deepEqual(C.concat([F,F],F), [F,F,F,F,F]);
+        assert.deepEqual(C.concat(A,B,B), [A,B,A,B,B]);
     });
 
-    QUnit.module("mu-compose/compose#extend.blueprints");
+    QUnit.test("deep", function (assert) {
+        assert.expect(1);
+
+        var A = function () {};
+        var B = function () {};
+        var C = compose(A,B);
+
+        assert.deepEqual(C.concat([A,B],B), [A,B,A,B,B]);
+    });
+
+    QUnit.test("extend", function (assert) {
+        assert.expect(1);
+
+        var A = function () {};
+        var B = function () {};
+        var C = compose(A);
+
+        assert.deepEqual(C.extend(B).concat(), [A, B]);
+    });
+
+    QUnit.module("mu-compose/compose#blueprints");
 
     QUnit.test("noop", function (assert) {
         assert.expect(1);
 
-        var F = function () {};
-        var C = compose()(F, F);
-        var t = transform.call(F);
+        var C = compose()();
 
-        assert.deepEqual(C.concat(), [t, t]);
+        assert.deepEqual(C.concat(), []);
     });
 
-    QUnit.test("arguments concat'ed", function (assert) {
+    QUnit.test("defaults", function (assert) {
         assert.expect(1);
 
         var F = function () {};
-        var C = compose()(F,F);
-        var t = transform.call(F);
+        var C = compose()(F, F);
+        var f = transform.call(F);
 
-        assert.deepEqual(C.concat([t,t],t), [t,t,t,t,t]);
+        assert.deepEqual(C.concat(), [f, f]);
+    });
+
+    QUnit.test("flat", function (assert) {
+        assert.expect(1);
+
+        var A = function () {};
+        var B = function () {};
+        var C = compose()(A,B);
+        var a = transform.call(A);
+        var b = transform.call(B);
+
+        assert.deepEqual(C.concat(a,b,b), [a,b,a,b,b]);
+    });
+
+    QUnit.test("deep", function (assert) {
+        assert.expect(1);
+
+        var A = function () {};
+        var B = function () {};
+        var C = compose()(A,B);
+        var a = transform.call(A);
+        var b = transform.call(B);
+
+        assert.deepEqual(C.concat([a,b],b), [a,b,a,b,b]);
+    });
+
+    QUnit.test("extend", function (assert) {
+        assert.expect(1);
+
+        var A = function () {};
+        var B = function () {};
+        var C = compose()(A);
+        var a = transform.call(A);
+        var b = transform.call(B);
+
+        assert.deepEqual(C.extend(b).concat(), [a, b]);
     });
 
     QUnit.module("mu-compose/compose#property");
