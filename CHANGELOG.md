@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/mu-lib/mu-compose/compare/v3.0.0...v3.1.0) (2016-09-13)
+
+
+### Features
+
+* added basic extend based on concat ([ae23799](https://github.com/mu-lib/mu-compose/commit/ae23799))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/mu-lib/mu-compose/compare/v2.2.0...v3.0.0) (2016-09-12)
 
