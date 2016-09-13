@@ -4,10 +4,10 @@
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/tests/process"] = factory.apply(root, modules.map(function(m) {
+    root["mu-create/tests/process"] = factory.apply(root, modules.map(function(m) {
       return {
         "qunit": root.QUnit
-      }[m = m.replace(/^\.{2}/, "mu-compose")] || root[m];
+      }[m = m.replace(/^\.{2}/, "mu-create")] || root[m];
     }));
   }
 })([
@@ -15,7 +15,7 @@
     "../process"
 ], this, function(QUnit, process) {
 
-    QUnit.module("mu-compose/process#rules");
+    QUnit.module("mu-create/process#rules");
 
     QUnit.test("executed in context", function (assert) {
         var o = {};
@@ -98,7 +98,7 @@
         )();
     });
 
-    QUnit.module("mu-compose/process#return");
+    QUnit.module("mu-create/process#return");
 
     QUnit.test("original for noop", function (assert) {
         var o = {};

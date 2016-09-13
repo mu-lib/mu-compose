@@ -4,8 +4,8 @@
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/process"] = factory.apply(root, modules.map(function(m) {
-      return root[m.replace(/^\./, "mu-compose")];
+    root["mu-create/process"] = factory.apply(root, modules.map(function(m) {
+      return root[m.replace(/^\./, "mu-create")];
     }));
   }
 })([], this, function() {
@@ -21,14 +21,14 @@
       var args = slice.call(arguments, 1);
 
       return rules.reduce(function(output, rule) {
-        var composed = skip ? output : rule.apply(self, concat.call([output], args));
+        var created = skip ? output : rule.apply(self, concat.call([output], args));
 
-        if (composed !== undefined) {
-          if (composed === false) {
+        if (created !== undefined) {
+          if (created === false) {
             skip = true;
           }
           else {
-            output = composed;
+            output = created;
           }
         }
 

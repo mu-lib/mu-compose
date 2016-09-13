@@ -4,10 +4,10 @@
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/tests/transform"] = factory.apply(root, modules.map(function(m) {
+    root["mu-create/tests/transform"] = factory.apply(root, modules.map(function(m) {
       return {
         "qunit": root.QUnit
-      }[m = m.replace(/^\.{2}/, "mu-compose")] || root[m];
+      }[m = m.replace(/^\.{2}/, "mu-create")] || root[m];
     }));
   }
 })([
@@ -15,7 +15,7 @@
     "../transform"
 ], this, function(QUnit, transform) {
 
-    QUnit.module("mu-compose/transform");
+    QUnit.module("mu-create/transform");
 
     QUnit.test("noop", function (assert) {
         var o = {
@@ -29,7 +29,7 @@
         assert.deepEqual(transform(o), o);
     });
 
-    QUnit.module("mu-compose/transform#basic");
+    QUnit.module("mu-create/transform#basic");
 
     QUnit.test("string|number|boolean|object|array|arguments", function (assert) {
         assert.expect(6);
@@ -68,7 +68,7 @@
     });
 
 
-    QUnit.module("mu-compose/transform#complex");
+    QUnit.module("mu-create/transform#complex");
 
     QUnit.test("transposed", function (assert) {
         assert.expect(1);

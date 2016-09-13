@@ -4,8 +4,8 @@
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/compose"] = factory.apply(root, modules.map(function(m) {
-      return root[m.replace(/^\./, "mu-compose")];
+    root["mu-create/create"] = factory.apply(root, modules.map(function(m) {
+      return root[m.replace(/^\./, "mu-create")];
     }));
   }
 })(["./transform", "./process"], this, function(transform, process) {
@@ -21,7 +21,7 @@
   return function configure() {
     var rules = slice.call(arguments);
 
-    function compose() {
+    function create() {
       var config = this === root ? {} : this;
       var result = slice.call(arguments);
       var blueprints;
@@ -60,20 +60,20 @@
       };
 
       result.extend = function() {
-        return compose.apply(this, result.concat.apply(this, arguments));
+        return create.apply(this, result.concat.apply(this, arguments));
       };
 
       return result;
     }
 
-    compose.concat = function() {
+    create.concat = function() {
       return concat.apply(rules, arguments);
     };
 
-    compose.extend = function() {
-      return configure.apply(this, compose.concat.apply(this, arguments));
+    create.extend = function() {
+      return configure.apply(this, create.concat.apply(this, arguments));
     };
 
-    return compose;
+    return create;
   }
 });

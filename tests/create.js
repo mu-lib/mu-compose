@@ -4,19 +4,19 @@
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/tests/compose"] = factory.apply(root, modules.map(function(m) {
+    root["mu-create/tests/create"] = factory.apply(root, modules.map(function(m) {
       return {
         "qunit": root.QUnit
-      }[m = m.replace(/^\.{2}/, "mu-compose")] || root[m];
+      }[m = m.replace(/^\.{2}/, "mu-create")] || root[m];
     }));
   }
 })([
     "qunit",
-    "../compose",
+    "../create",
     "../constructor",
     "../prototype",
     "../regexp"
-], this, function(QUnit, compose, construct, proto, regexp) {
+], this, function(QUnit, create, construct, proto, regexp) {
     var toString = Object.prototype.toString;
 
     function transform() {
@@ -26,12 +26,12 @@
         };
     }
 
-    QUnit.module("mu-compose/compose#rules");
+    QUnit.module("mu-create/create#rules");
 
     QUnit.test("noop", function (assert) {
         assert.expect(1);
 
-        var C = compose();
+        var C = create();
 
         assert.deepEqual(C.concat(), []);
     });
@@ -40,7 +40,7 @@
         assert.expect(1);
 
         var F = function () {};
-        var C = compose(F, F);
+        var C = create(F, F);
 
         assert.deepEqual(C.concat(), [F, F]);
     });
@@ -50,7 +50,7 @@
 
         var A = function () {};
         var B = function () {};
-        var C = compose(A,B);
+        var C = create(A,B);
 
         assert.deepEqual(C.concat(A,B,B), [A,B,A,B,B]);
     });
@@ -60,7 +60,7 @@
 
         var A = function () {};
         var B = function () {};
-        var C = compose(A,B);
+        var C = create(A,B);
 
         assert.deepEqual(C.concat([A,B],B), [A,B,A,B,B]);
     });
@@ -70,17 +70,17 @@
 
         var A = function () {};
         var B = function () {};
-        var C = compose(A);
+        var C = create(A);
 
         assert.deepEqual(C.extend(B).concat(), [A, B]);
     });
 
-    QUnit.module("mu-compose/compose#blueprints");
+    QUnit.module("mu-create/create#blueprints");
 
     QUnit.test("noop", function (assert) {
         assert.expect(1);
 
-        var C = compose()();
+        var C = create()();
 
         assert.deepEqual(C.concat(), []);
     });
@@ -89,7 +89,7 @@
         assert.expect(1);
 
         var F = function () {};
-        var C = compose()(F, F);
+        var C = create()(F, F);
         var f = transform.call(F);
 
         assert.deepEqual(C.concat(), [f, f]);
@@ -100,7 +100,7 @@
 
         var A = function () {};
         var B = function () {};
-        var C = compose()(A,B);
+        var C = create()(A,B);
         var a = transform.call(A);
         var b = transform.call(B);
 
@@ -112,7 +112,7 @@
 
         var A = function () {};
         var B = function () {};
-        var C = compose()(A,B);
+        var C = create()(A,B);
         var a = transform.call(A);
         var b = transform.call(B);
 
@@ -124,19 +124,19 @@
 
         var A = function () {};
         var B = function () {};
-        var C = compose()(A);
+        var C = create()(A);
         var a = transform.call(A);
         var b = transform.call(B);
 
         assert.deepEqual(C.extend(b).concat(), [a, b]);
     });
 
-    QUnit.module("mu-compose/compose#property");
+    QUnit.module("mu-create/create#property");
 
     QUnit.test("prototype", function (assert) {
         assert.expect(1);
 
-        var C = compose(proto)({
+        var C = create(proto)({
             "a": 1,
             "b": 2
         });
@@ -153,7 +153,7 @@
         function handler() {
         }
 
-        var C = compose(regexp(/^on:(.+)/, function (r, data, type) {
+        var C = create(regexp(/^on:(.+)/, function (r, data, type) {
             assert.deepEqual(type, "test");
             assert.deepEqual(data.value, handler);
         }))({
@@ -162,14 +162,14 @@
         var c = new C();
     });
 
-    QUnit.module("mu-compose/compose#constructor");
+    QUnit.module("mu-create/create#constructor");
 
     QUnit.test("executed in order", function (assert) {
         var count = 0;
 
         assert.expect(3);
 
-        var C = compose(construct)(
+        var C = create(construct)(
             function () {
                 assert.deepEqual(++count, 1);
             },
@@ -187,7 +187,7 @@
     QUnit.test("return undefined", function(assert) {
         assert.expect(4);
 
-        var C = compose(construct)(
+        var C = create(construct)(
             function(a) {
                 assert.deepEqual(arguments.length, 1);
                 assert.deepEqual(a, 1);
@@ -205,7 +205,7 @@
 
         var o = {};
 
-        var C = compose(construct)(
+        var C = create(construct)(
             function() {
                 return false;
             },
@@ -231,7 +231,7 @@
     QUnit.test("return array-like", function(assert) {
         assert.expect(10);
 
-        var C = compose(construct)(
+        var C = create(construct)(
             function (a,b,c) {
                 assert.deepEqual(arguments.length, 3);
                 assert.deepEqual(a, 1);

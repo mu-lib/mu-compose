@@ -4,8 +4,8 @@
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-compose/prototype"] = factory.apply(root, modules.map(function(m) {
-      return root[m.replace(/^\./, "mu-compose")];
+    root["mu-create/prototype"] = factory.apply(root, modules.map(function(m) {
+      return root[m.replace(/^\./, "mu-create")];
     }));
   }
 })([], this, function() {

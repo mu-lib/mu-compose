@@ -1,10 +1,10 @@
 {
-  "name": "mu-compose",
+  "name": "mu-create",
   "authors": [
     "Mikael Karon <mikael@karon.se>"
   ],
   "description": "A micro object composer",
-  "main": "compose.js",
+  "main": "main.js",
   "license": "MIT",
   "homepage": "",
   "ignore": [
