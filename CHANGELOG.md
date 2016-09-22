@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/mu-lib/mu-create/compare/v4.0.0...v4.1.0) (2016-09-22)
+
+
+### Features
+
+* **prototype:** added support for setting protype ([#3](https://github.com/mu-lib/mu-create/issues/3)) ([8856c6f](https://github.com/mu-lib/mu-create/commit/8856c6f))
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/mu-lib/mu-create/compare/v3.1.0...v4.0.0) (2016-09-13)
 
