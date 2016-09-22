@@ -133,18 +133,27 @@
 
     QUnit.module("mu-create/create#property");
 
-    QUnit.test("prototype", function (assert) {
+    QUnit.test("prototype instance", function (assert) {
         assert.expect(1);
+        var p = {};
 
         var C = create(proto)({
-            "a": 1,
-            "b": 2
+            "prototype": p
         });
 
-        assert.propEqual(C.prototype, {
+        assert.strictEqual(C.prototype, p, "instance is equal");
+    });
+
+    QUnit.test("prototype property", function (assert) {
+        assert.expect(1);
+        var p = {
             "a": 1,
             "b": 2
-        });
+        }
+
+        var C = create(proto)(p);
+
+        assert.propEqual(C.prototype, p, "properies are equal");
     });
 
     QUnit.test("regexp", function(assert) {
