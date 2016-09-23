@@ -21,7 +21,7 @@
       var args = slice.call(arguments, 1);
 
       return rules.reduce(function(output, rule) {
-        var created = skip ? output : rule.apply(self, concat.call([output], args));
+        var created = skip ? output : rule.apply(self, [output].concat(args));
 
         if (created !== undefined) {
           if (created === false) {
