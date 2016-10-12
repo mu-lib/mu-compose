@@ -1,16 +1,16 @@
-(function(modules, root, factory) {
+(function (modules, root, factory) {
   if (typeof define === "function" && define.amd) {
     define(modules, factory);
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-create/regexp"] = factory.apply(root, modules.map(function(m) {
+    root["mu-create/regexp"] = factory.apply(root, modules.map(function (m) {
       return root[m.replace(/^\./, "mu-create")];
     }));
   }
-})([], this, function() {
-  return function(regexp, callback) {
-    return function(result, data) {
+})([], this, function () {
+  return function (regexp, callback) {
+    return function (result, data) {
       var matches = data.key.match(regexp);
 
       if (matches) {

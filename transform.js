@@ -1,14 +1,14 @@
-(function(modules, root, factory) {
+(function (modules, root, factory) {
   if (typeof define === "function" && define.amd) {
     define(modules, factory);
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-create/transform"] = factory.apply(root, modules.map(function(m) {
+    root["mu-create/transform"] = factory.apply(root, modules.map(function (m) {
       return root[m.replace(/^\./, "mu-create")];
     }));
   }
-})([], this, function() {
+})([], this, function () {
   var slice = Array.prototype.slice;
   var toString = Object.prototype.toString
 
@@ -23,7 +23,7 @@
     return keys.map(value, this);
   }
 
-  return function(data) {
+  return function (data) {
     var type = toString.call(data);
     var transformed;
 

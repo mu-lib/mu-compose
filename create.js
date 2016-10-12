@@ -1,14 +1,14 @@
-(function(modules, root, factory) {
+(function (modules, root, factory) {
   if (typeof define === "function" && define.amd) {
     define(modules, factory);
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-create/create"] = factory.apply(root, modules.map(function(m) {
+    root["mu-create/create"] = factory.apply(root, modules.map(function (m) {
       return root[m.replace(/^\./, "mu-create")];
     }));
   }
-})(["./transform", "./process"], this, function(transform, process) {
+})(["./transform", "./process"], this, function (transform, process) {
   var root = this;
   var array = Array.prototype;
   var slice = array.slice;
@@ -36,7 +36,7 @@
       result = result.reduce(process.apply(config, rules), function Composition() {
         var self = this;
 
-        (this.constructor.constructors || []).reduce(function(args, c) {
+        (this.constructor.constructors || []).reduce(function (args, c) {
           var r = c.apply(self, args);
 
           switch (toString.call(r)) {
@@ -55,22 +55,22 @@
         }, arguments);
       });
 
-      result.concat = function() {
+      result.concat = function () {
         return concat.apply(blueprints, arguments);
       };
 
-      result.extend = function() {
+      result.extend = function () {
         return create.apply(this, result.concat.apply(this, arguments));
       };
 
       return result;
     }
 
-    create.concat = function() {
+    create.concat = function () {
       return concat.apply(rules, arguments);
     };
 
-    create.extend = function() {
+    create.extend = function () {
       return configure.apply(this, create.concat.apply(this, arguments));
     };
 
