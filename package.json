@@ -16,7 +16,10 @@
     "url": "https://github.com/mu-lib/mu-create/issues"
   },
   "homepage": "https://github.com/mu-lib/mu-create#readme",
+  "dependencies": {
+  },
   "devDependencies": {
+    "qunitjs": "^2.0.1",
     "standard-version": "^2.4.0"
   }
 }
