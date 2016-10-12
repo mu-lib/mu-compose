@@ -1,87 +1,87 @@
-(function(modules, root, factory) {
+(function (modules, root, factory) {
   if (typeof define === "function" && define.amd) {
     define(modules, factory);
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.apply(root, modules.map(require));
   } else {
-    root["mu-create/tests/transform"] = factory.apply(root, modules.map(function(m) {
-      return {
+    root["mu-create/tests/transform"] = factory.apply(root, modules.map(function (m) {
+      return this[m] || root[m.replace(/^\.{2}/, "mu-create")];
+    }, {
         "qunit": root.QUnit
-      }[m = m.replace(/^\.{2}/, "mu-create")] || root[m];
-    }));
+      }));
   }
 })([
-    "qunit",
-    "../transform"
-], this, function(QUnit, transform) {
+  "qunit",
+  "../transform"
+], this, function (QUnit, transform) {
 
-    QUnit.module("mu-create/transform");
+  QUnit.module("mu-create/transform");
 
-    QUnit.test("noop", function (assert) {
-        var o = {
-            "key": "test",
-            "value": 123,
-            "extra": true
-        };
+  QUnit.test("noop", function (assert) {
+    var o = {
+      "key": "test",
+      "value": 123,
+      "extra": true
+    };
 
-        assert.expect(1);
-        
-        assert.deepEqual(transform(o), o);
-    });
+    assert.expect(1);
 
-    QUnit.module("mu-create/transform#basic");
+    assert.deepEqual(transform(o), o);
+  });
 
-    QUnit.test("string|number|boolean|object|array|arguments", function (assert) {
-        assert.expect(6);
+  QUnit.module("mu-create/transform#basic");
 
-        assert.deepEqual(transform(""), {
-            "key": "[object String]",
-            "value": ""
-        }, "input typeof [object String]");
+  QUnit.test("string|number|boolean|object|array|arguments", function (assert) {
+    assert.expect(6);
 
-        assert.deepEqual(transform(0), {
-            "key": "[object Number]",
-            "value": 0
-        }, "input typeof [object Number]");
+    assert.deepEqual(transform(""), {
+      "key": "[object String]",
+      "value": ""
+    }, "input typeof [object String]");
 
-        assert.deepEqual(transform(false), {
-            "key": "[object Boolean]",
-            "value": false
-        }, "input typeof [object Boolean]");
+    assert.deepEqual(transform(0), {
+      "key": "[object Number]",
+      "value": 0
+    }, "input typeof [object Number]");
 
-        assert.deepEqual(transform({}), {
-            "key": "[object Object]",
-            "value": {}
-        }, "input typeof [object Object]");
+    assert.deepEqual(transform(false), {
+      "key": "[object Boolean]",
+      "value": false
+    }, "input typeof [object Boolean]");
 
-        assert.deepEqual(transform([1, 2, 3]), {
-            "key": "[object Array]",
-            "value": [1, 2, 3]
-        }, "input typeof [object Array]");
+    assert.deepEqual(transform({}), {
+      "key": "[object Object]",
+      "value": {}
+    }, "input typeof [object Object]");
 
-        (function() {
-            assert.deepEqual(transform(arguments), {
-                "key": "[object Array]",
-                "value": [1, 2, 3]
-            }, "input typeof [object Arguments]");
-        })(1, 2, 3);
-    });
+    assert.deepEqual(transform([1, 2, 3]), {
+      "key": "[object Array]",
+      "value": [1, 2, 3]
+    }, "input typeof [object Array]");
+
+    (function () {
+      assert.deepEqual(transform(arguments), {
+        "key": "[object Array]",
+        "value": [1, 2, 3]
+      }, "input typeof [object Arguments]");
+    })(1, 2, 3);
+  });
 
 
-    QUnit.module("mu-create/transform#complex");
+  QUnit.module("mu-create/transform#complex");
 
-    QUnit.test("transposed", function (assert) {
-        assert.expect(1);
+  QUnit.test("transposed", function (assert) {
+    assert.expect(1);
 
-        assert.deepEqual(transform({
-            "a": 1,
-            "b": 2
-        }), [ {
-            "key": "a",
-            "value": 1
-        }, {
-            "key": "b",
-            "value": 2
-        } ], "compact object");
-    });
+    assert.deepEqual(transform({
+      "a": 1,
+      "b": 2
+    }), [{
+      "key": "a",
+      "value": 1
+    }, {
+      "key": "b",
+      "value": 2
+    }], "compact object");
+  });
 });
