@@ -1,6 +1,6 @@
 {
   "name": "mu-create",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "A micro object composer",
   "main": "main.js",
   "scripts": {
@@ -16,8 +16,7 @@
     "url": "https://github.com/mu-lib/mu-create/issues"
   },
   "homepage": "https://github.com/mu-lib/mu-create#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "qunitjs": "^2.0.1",
     "standard-version": "^2.4.0"
