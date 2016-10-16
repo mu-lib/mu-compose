@@ -33,7 +33,7 @@
       // Flatten & Clean
       result = blueprints = concat.apply(array, result).filter(clean, config);
       // Process
-      result = result.reduce(process.apply(config, rules), function Composition() {
+      result = result.reduce(process.apply(config, rules), function () {
         var self = this;
 
         (this.constructor.constructors || []).reduce(function (args, c) {
