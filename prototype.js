@@ -9,15 +9,12 @@
     }));
   }
 })([], this, function () {
-  function p(proto) {
-    function f() {};
-    f.prototype = proto;
-    return new f();
-  }
+  function proto() {};
 
   return function (result, data) {
     if (data.key === "proto") {
-      result.prototype = p(data.value);
+      proto.prototype = data.value;
+      result.prototype = new proto();
     }
     else if (data.key === "prototype") {
       result.prototype = data.value;
