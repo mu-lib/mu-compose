@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/mu-lib/mu-create/compare/v4.2.1...v5.0.0) (2016-10-16)
+
+
+### Features
+
+* **prototype:** allow prototype value to be a function ([1f99354](https://github.com/mu-lib/mu-create/commit/1f99354))
+
+
+### BREAKING CHANGES
+
+* prototype: We've retired `proto` as it can be better implemented
+with a callback.
+
+
+
 <a name="4.2.1"></a>
 ## [4.2.1](https://github.com/mu-lib/mu-create/compare/v4.2.0...v4.2.1) (2016-10-16)
 
