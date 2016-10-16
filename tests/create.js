@@ -135,8 +135,8 @@
 
   QUnit.test("proto instance", function (assert) {
     assert.expect(1);
-    var p = {};
 
+    var p = {};
     var C = create(proto)({
       "proto": p
     });
@@ -146,8 +146,8 @@
 
   QUnit.test("prototype instance", function (assert) {
     assert.expect(1);
-    var p = {};
 
+    var p = {};
     var C = create(proto)({
       "prototype": p
     });
@@ -157,11 +157,11 @@
 
   QUnit.test("prototype property", function (assert) {
     assert.expect(1);
+
     var p = {
       "a": 1,
       "b": 2
-    }
-
+    };
     var C = create(proto)(p);
 
     assert.propEqual(C.prototype, p, "properies are equal");
@@ -170,8 +170,7 @@
   QUnit.test("regexp", function (assert) {
     assert.expect(2);
 
-    function handler() {
-    }
+    function handler() {}
 
     var C = create(regexp(/^on:(.+)/, function (r, data, type) {
       assert.deepEqual(type, "test");
@@ -224,7 +223,6 @@
     assert.expect(4);
 
     var o = {};
-
     var C = create(construct)(
       function () {
         return false;
