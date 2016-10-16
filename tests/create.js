@@ -133,23 +133,59 @@
 
   QUnit.module("mu-create/create#property");
 
-  QUnit.test("proto instance", function (assert) {
-    assert.expect(1);
-
-    var p = {};
-    var C = create(proto)({
-      "proto": p
-    });
-
-    assert.strictEqual(C.prototype.__proto__, p, "instance is equal");
-  });
-
   QUnit.test("prototype instance", function (assert) {
     assert.expect(1);
 
     var p = {};
     var C = create(proto)({
       "prototype": p
+    });
+
+    assert.strictEqual(C.prototype, p, "instance is equal");
+  });
+
+  QUnit.test("prototype function", function (assert) {
+    assert.expect(1);
+
+    var C = create(proto)({
+      "prototype": function() {
+        assert.ok(true, "callback called");
+      }
+    });
+  });
+
+  QUnit.test("prototype function arguments", function (assert) {
+    assert.expect(1);
+
+    var p;
+    var C = create(proto)({
+      "prototype": function(c) {
+        return p = c.prototype;
+      }
+    });
+
+    assert.strictEqual(p, C.prototype, "p matches C.prototype");
+  });
+
+  QUnit.test("prototype function scope", function (assert) {
+    assert.expect(1);
+
+    var s = {};
+    var C = create(proto).call(s, {
+      "prototype": function() {
+        assert.strictEqual(this, s, "scope matches");
+      }
+    });
+  });
+
+  QUnit.test("prototype function return", function (assert) {
+    assert.expect(1);
+
+    var p = {};
+    var C = create(proto)({
+      "prototype": function() {
+        return p;
+      }
     });
 
     assert.strictEqual(C.prototype, p, "instance is equal");
