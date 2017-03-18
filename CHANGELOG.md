@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/mu-lib/mu-create/compare/v5.0.1...v6.0.0) (2017-03-18)
+
+
+### Features
+
+* filter duplicates ([a46a818](https://github.com/mu-lib/mu-create/commit/a46a818))
+
+
+### BREAKING CHANGES
+
+* It was never specified how duplicate specs were supposed to be applied but from now overlaps are disallowed.
+
+
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://github.com/mu-lib/mu-create/compare/v5.0.0...v5.0.1) (2016-10-19)
 
