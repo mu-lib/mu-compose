@@ -13,9 +13,19 @@
   var array = Array.prototype;
   var slice = array.slice;
   var concat = array.concat;
+  var count = 0;
 
   function clean(data) {
     return !!data;
+  }
+
+  function unique(data) {
+    var me = this;
+    var id = data.id || (data.id = "blueprint-" + count++);
+
+    return me.hasOwnProperty(id)
+      ? false
+      : me[id] = data;
   }
 
   return function configure() {
@@ -28,12 +38,14 @@
 
       // Flatten & Clean
       result = concat.apply(array, result).filter(clean, config);
+      // Unique
+      result = result.filter(unique, {});
       // Transform
       result = result.map(config.transform || transform, config);
       // Flatten & Clean
       result = blueprints = concat.apply(array, result).filter(clean, config);
       // Process
-      result = result.reduce(process.apply(config, rules), function () {
+      result = result.reduce(process.apply(config, rules), function Constructor() {
         var self = this;
 
         (this.constructor.constructors || []).reduce(function (args, c) {
@@ -56,7 +68,7 @@
       });
 
       result.concat = function () {
-        return concat.apply(blueprints, arguments);
+        return concat.apply(blueprints, arguments).filter(unique, {});
       };
 
       result.extend = function () {
@@ -67,7 +79,7 @@
     }
 
     create.concat = function () {
-      return concat.apply(rules, arguments);
+      return concat.apply(rules, arguments).filter(unique, {});
     };
 
     create.extend = function () {

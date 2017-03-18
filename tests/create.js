@@ -40,9 +40,9 @@
     assert.expect(1);
 
     var F = function () { };
-    var C = create(F, F);
+    var C = create(F);
 
-    assert.deepEqual(C.concat(), [F, F]);
+    assert.deepEqual(C.concat(), [F]);
   });
 
   QUnit.test("flat", function (assert) {
@@ -50,9 +50,11 @@
 
     var A = function () { };
     var B = function () { };
-    var C = create(A, B);
+    var C = function () { };
+    var D = function () { };
+    var E = create(A, B);
 
-    assert.deepEqual(C.concat(A, B, B), [A, B, A, B, B]);
+    assert.deepEqual(E.concat(C, D), [A, B, C, D]);
   });
 
   QUnit.test("deep", function (assert) {
@@ -60,9 +62,21 @@
 
     var A = function () { };
     var B = function () { };
-    var C = create(A, B);
+    var C = function () { };
+    var D = function () { };
+    var E = create(A, B);
 
-    assert.deepEqual(C.concat([A, B], B), [A, B, A, B, B]);
+    assert.deepEqual(E.concat([C, D]), [A, B, C, D]);
+  });
+
+  QUnit.test("unique", function (assert) {
+    assert.expect(1);
+
+    var A = function () { };
+    var B = function () { };
+    var C = create(A);
+
+    assert.deepEqual(C.concat(A, [A, B], A, B), [A, B]);
   });
 
   QUnit.test("extend", function (assert) {
@@ -88,47 +102,54 @@
   QUnit.test("defaults", function (assert) {
     assert.expect(1);
 
-    var F = function () { };
-    var C = create()(F, F);
-    var f = transform.call(F);
+    var F = transform.call(function () { });
+    var C = create()(F);
 
-    assert.deepEqual(C.concat(), [f, f]);
+    assert.deepEqual(C.concat(), [F]);
   });
 
   QUnit.test("flat", function (assert) {
     assert.expect(1);
 
-    var A = function () { };
-    var B = function () { };
-    var C = create()(A, B);
-    var a = transform.call(A);
-    var b = transform.call(B);
+    var A = transform.call(function () { });
+    var B = transform.call(function () { });
+    var C = transform.call(function () { });
+    var D = transform.call(function () { });
+    var E = create()(A, B);
 
-    assert.deepEqual(C.concat(a, b, b), [a, b, a, b, b]);
+    assert.deepEqual(E.concat(C, D), [A, B, C, D]);
   });
 
   QUnit.test("deep", function (assert) {
     assert.expect(1);
 
-    var A = function () { };
-    var B = function () { };
-    var C = create()(A, B);
-    var a = transform.call(A);
-    var b = transform.call(B);
+    var A = transform.call(function () { });
+    var B = transform.call(function () { });
+    var C = transform.call(function () { });
+    var D = transform.call(function () { });
+    var E = create()(A, B);
 
-    assert.deepEqual(C.concat([a, b], b), [a, b, a, b, b]);
+    assert.deepEqual(E.concat([C, D]), [A, B, C, D]);
+  });
+
+  QUnit.test("unique", function (assert) {
+    assert.expect(1);
+
+    var A = transform.call(function () { });
+    var B = transform.call(function () { });
+    var C = create()(A);
+
+    assert.deepEqual(C.concat(A, [A, B], A, B), [A, B]);
   });
 
   QUnit.test("extend", function (assert) {
     assert.expect(1);
 
-    var A = function () { };
-    var B = function () { };
+    var A = transform.call(function () { });
+    var B = transform.call(function () { });
     var C = create()(A);
-    var a = transform.call(A);
-    var b = transform.call(B);
 
-    assert.deepEqual(C.extend(b).concat(), [a, b]);
+    assert.deepEqual(C.extend(B).concat(), [A, B]);
   });
 
   QUnit.module("mu-create/create#property");
@@ -150,6 +171,7 @@
     var C = create(proto)({
       "prototype": function() {
         assert.ok(true, "callback called");
+        return {};
       }
     });
   });
@@ -172,8 +194,9 @@
 
     var s = {};
     var C = create(proto).call(s, {
-      "prototype": function() {
+      "prototype": function(c) {
         assert.strictEqual(this, s, "scope matches");
+        return c.prototype;
       }
     });
   });
