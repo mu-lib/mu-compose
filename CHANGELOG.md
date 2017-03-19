@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/mu-lib/mu-create/compare/v6.0.0...v6.0.1) (2017-03-19)
+
+
+### Bug Fixes
+
+* clean output from concat ([c06ff7a](https://github.com/mu-lib/mu-create/commit/c06ff7a))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/mu-lib/mu-create/compare/v5.0.1...v6.0.0) (2017-03-18)
 
