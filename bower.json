@@ -15,6 +15,6 @@
     "tests"
   ],
   "devDependencies": {
-    "qunit": "^2.0.1"
+    "qunit": "^2.3.0"
   }
 }
