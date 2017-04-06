@@ -7,12 +7,13 @@
     root["mu-create/process"] = factory.call(root);
   }
 })([], this, function () {
-  var slice = Array.prototype.slice;
-  var concat = Array.prototype.concat;
+  var array = Array.prototype;
+  var slice = array.slice;
+  var concat = array.concat;
 
   return function () {
     var self = this;
-    var rules = concat.apply([], arguments);
+    var rules = concat.apply(array, arguments);
 
     return function (input) {
       var skip = false;

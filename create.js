@@ -63,7 +63,7 @@
       result = result.reduce(process.apply(config, rules), function Constructor() {
         var self = this;
 
-        (this.constructor.constructors || []).reduce(function (args, c) {
+        (this.constructor.constructors || array).reduce(function (args, c) {
           var r = c.apply(self, args);
 
           switch (toString.call(r)) {
