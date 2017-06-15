@@ -1,12 +1,12 @@
-(function (modules, root, factory) {
+(function (root, factory) {
   if (typeof define === "function" && define.amd) {
-    define(modules, factory);
+    define([], factory);
   } else if (typeof module === "object" && module.exports) {
     module.exports = factory.call(root);
   } else {
     root["mu-create/transform"] = factory.call(root);
   }
-})([], this, function () {
+})(this, function () {
   var slice = Array.prototype.slice;
   var toString = Object.prototype.toString
 

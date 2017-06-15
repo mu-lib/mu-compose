@@ -1,14 +1,12 @@
-(function (modules, root, factory) {
+(function (root, factory) {
   if (typeof define === "function" && define.amd) {
-    define(modules, factory);
+    define(["./transform", "./process"], factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory.apply(root, modules.map(require));
+    module.exports = factory.call(root, require("./transform"), require("./process"));
   } else {
-    root["mu-create/create"] = factory.apply(root, modules.map(function (m) {
-      return root[m.replace(/^\./, "mu-create")];
-    }));
+    root["mu-create/create"] = factory.call(root, root["mu-create/transform"], root["mu-create/process"]);
   }
-})(["./transform", "./process"], this, function (transform, process) {
+})(this, function (transform, process) {
   var root = this;
   var array = Array.prototype;
   var slice = array.slice;
