@@ -2,9 +2,9 @@
   if (typeof define === "function" && define.amd) {
     define([], factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory.call(root);
+    module.exports = factory();
   } else {
-    root["mu-create/constructor"] = factory.call(root);
+    root["mu-create/constructor"] = factory();
   }
 })(this, function () {
   return function (result, data) {

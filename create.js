@@ -2,9 +2,9 @@
   if (typeof define === "function" && define.amd) {
     define(["./transform", "./process"], factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory.call(root, require("./transform"), require("./process"));
+    module.exports = factory(require("./transform"), require("./process"));
   } else {
-    root["mu-create/create"] = factory.call(root, root["mu-create/transform"], root["mu-create/process"]);
+    root["mu-create/create"] = factory(root["mu-create/transform"], root["mu-create/process"]);
   }
 })(this, function (transform, process) {
   var root = this;
